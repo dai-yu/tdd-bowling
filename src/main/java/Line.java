@@ -24,6 +24,8 @@ public class Line {
             if (i==9){
                 if (frame.getFirst()==10){
                     result[i]=10+lineList.get(i+1).getFirst()+lineList.get(i+2).getFirst();
+                }else if(frame.getFirst()+lineList.get(i+1).getFirst()==10){
+                    result[i]=10+lineList.get(i+2).getFirst();
                 }else if (frame.getFirst()+lineList.get(i+1).getFirst()<10){
                     result[i]=frame.getFirst()+lineList.get(i+1).getFirst();
                 }

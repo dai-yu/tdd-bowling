@@ -55,5 +55,21 @@ public class BowlingGameTest {
         assertEquals(101,line.calculate());
     }
 
-
+    @Test
+    public void should_return_score_when_calculate_given_a_line_with_Tenth_ball_with_spare_but_no_strike(){
+        Line line=new Line();
+        line.add(new Frame(10));
+        line.add(new Frame(5,3));
+        line.add(new Frame(7,1));
+        line.add(new Frame(10));
+        line.add(new Frame(1,3));
+        line.add(new Frame(10));
+        line.add(new Frame(5,2));
+        line.add(new Frame(2,4));
+        line.add(new Frame(1,1));
+        line.add(new Frame(5));
+        line.add(new Frame(5));
+        line.add(new Frame(6));
+        assertEquals(100,line.calculate());
+    }
 }
