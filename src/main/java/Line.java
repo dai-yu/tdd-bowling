@@ -22,26 +22,37 @@ public class Line {
     public int calculate() {
         int[] result = new int[10];
         for (int i = 0; i < 10; i++) {
-            Frame frame = lineList.get(i);
+            int currentFirst=getFirst(i);
+            int currentSecond=getSecond(i);
+            int nextFirst=getFirst(i+1);
+            int nextSecond=getSecond(i+1);
+            int nextTwiceFirst=getFirst(i+2);
             if (i == 9) {
-                if (frame.getFirst() == 10) {
-                    result[i] = 10 + lineList.get(i + 1).getFirst() + lineList.get(i + 2).getFirst();
-                } else if (frame.getFirst() + lineList.get(i + 1).getFirst() == 10 && frame.getFirst() != 10) {
-                    result[i] = 10 + lineList.get(i + 2).getFirst();
-                } else if (frame.getFirst() + lineList.get(i + 1).getFirst() < 10) {
-                    result[i] = frame.getFirst() + lineList.get(i + 1).getFirst();
+                if (currentFirst == 10) {
+                    result[i] = 10 + nextFirst + nextTwiceFirst;
+                } else if (currentFirst + nextFirst == 10 && currentFirst != 10) {
+                    result[i] = 10 + nextTwiceFirst;
+                } else if (currentFirst + nextFirst < 10) {
+                    result[i] = currentFirst + nextFirst;
                 }
                 break;
             }
-            if (frame.getFirst() == 10) {
-                result[i] = 10 + lineList.get(i + 1).getFirst() + (lineList.get(i + 1).getSecond() == 0 ? lineList.get(i + 2).getFirst() : lineList.get(i + 1).getSecond());
-            } else if (frame.getFirst() + frame.getSecond() == 10 && frame.getFirst() != 10) {
-                result[i] = 10 + lineList.get(i + 1).getFirst();
-            } else if (frame.getFirst() + frame.getSecond() < 10) {
-                result[i] = frame.getFirst() + frame.getSecond();
+            if (currentFirst == 10) {
+                result[i] = 10 + nextFirst + (nextSecond == 0 ? nextTwiceFirst : nextSecond);
+            } else if (currentFirst + currentSecond == 10 && currentFirst != 10) {
+                result[i] = 10 + nextFirst;
+            } else if (currentFirst + currentSecond < 10) {
+                result[i] = currentFirst+ currentSecond;
             }
         }
         OptionalInt reduce = Arrays.stream(result).reduce((acc, item) -> acc + item);
         return reduce.getAsInt();
+    }
+
+    public int getFirst(int index){
+        return lineList.get(index).getFirst();
+    }
+    public int getSecond(int index){
+        return lineList.get(index).getSecond();
     }
 }

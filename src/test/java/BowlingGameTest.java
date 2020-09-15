@@ -17,6 +17,7 @@ public class BowlingGameTest {
         line.add(new Frame(2,6));
         line.add(new Frame(2));
         line.add(new Frame(6));
+        line.add(new Frame(6));
         assertEquals(80, line.calculate());
     }
 
@@ -34,6 +35,7 @@ public class BowlingGameTest {
         line.add(new Frame(1,1));
         line.add(new Frame(5));
         line.add(new Frame(1));
+        line.add(new Frame(5));
         assertEquals(90,line.calculate());
     }
 
